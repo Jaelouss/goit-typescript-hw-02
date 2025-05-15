@@ -11,10 +11,11 @@ import ImageModal from "../ImageModal/ImageModal";
 import s from "./App.module.css";
 import { StringVoidFn, voidFn } from "../../types/global";
 import { PartialPhoto, imageSearch } from "../ImagesApi/ImagesApi";
+import { ImageInfo } from "../ImageCard/ImageCard";
 
 export type HandleSearch = (topic: string, page: number) => Promise<void>;
 
-export type OpenModal = (arg: PartialPhoto) => void;
+export type OpenModal = (arg: ImageInfo) => void;
 
 const App = () => {
   const [query, setQuery] = useState<string>("");
@@ -24,7 +25,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [maxPage, setMaxPage] = useState<number>(1);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [imageInfo, setImageInfo] = useState<PartialPhoto | null>(null);
+  const [imageInfo, setImageInfo] = useState<ImageInfo | null>(null);
 
   const handleSubmit: StringVoidFn = (userQuery) => {
     setQuery(userQuery);

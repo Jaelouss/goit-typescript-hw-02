@@ -3,27 +3,21 @@ import Modal from "react-modal";
 import s from "./ImageModal.module.css";
 import { PartialPhoto } from "../ImagesApi/ImagesApi";
 import { voidFn } from "../../types/global";
+import { ImageInfo } from "../ImageCard/ImageCard";
 
 Modal.setAppElement("#root");
 
 export type ImageModalProps = {
-  image: PartialPhoto;
+  image: ImageInfo;
   isOpen: boolean;
   closeModal: voidFn;
 };
 
-const ImageModal = ({ image, isOpen, closeModal }: ImageModalProps) => {
-  if (!image) return null;
-
-  const url = image.urls?.full ?? "";
-  const first_name = image.user?.first_name ?? "";
-  const last_name = image.user?.last_name ?? "";
-  const name = [first_name, last_name].filter(Boolean).join(" ");
-  const location = image.user?.location ?? "";
-  const portfolio = image.user?.portfolio_url ?? "";
-  const alt = image.alt_description ?? "";
-  const description = image.description ?? "";
-
+const ImageModal = ({
+  image: { url, description, name, location, portfolio, alt },
+  isOpen,
+  closeModal,
+}: ImageModalProps) => {
   const googleMapsUrl: string = `https://www.google.com/maps/search/?q=${encodeURIComponent(
     location ?? ""
   )}`;

@@ -8,14 +8,23 @@ type ImageCardsProps = {
   openModal: OpenModal;
 };
 
+export type ImageInfo = {
+  url?: string;
+  alt?: string;
+  description?: string;
+  name?: string;
+  location?: string;
+  portfolio?: string;
+};
+
 const ImageCard = ({ image, openModal }: ImageCardsProps) => {
-  const info = {
+  const info: ImageInfo = {
     url: image?.urls?.full,
-    alt: image?.alt_description,
-    description: image?.description,
+    alt: image?.alt_description || "",
+    description: image?.description || "",
     name: `${image?.user?.first_name} ${image?.user?.last_name}`,
-    location: image?.user?.location,
-    portfolio: image?.user?.portfolio_url,
+    location: image?.user?.location || "",
+    portfolio: image?.user?.portfolio_url || "",
   };
 
   return (
